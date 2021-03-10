@@ -18,3 +18,15 @@ export function setColor(color) {
     color
   };
 }
+
+export function mainIncrement() {
+  return {
+    type: types.MAININCREMENT
+  }
+}
+
+export function mainDecrement() {
+  return {
+    type: types.MAINDECREMENT
+  }
+}

@@ -6,10 +6,10 @@ const initialState = {
 
 export default function ui(state = initialState, action){
 
-  switch (types.SET_COLOR){
+  switch (action.type){
     case "SET_COLOR":
       return {...state, color: action.color};
     default :
-      return state
+      return state;
   }
 }

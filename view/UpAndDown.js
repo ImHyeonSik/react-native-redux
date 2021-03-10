@@ -26,22 +26,34 @@ class UpAndDown extends Component {
       backgroundColor: `rgb(${color[0]},${color[1]},${color[2]})`
     }
 
+    console.log(color)
     return (
       <View style={css.mainContainer}>
-        <Text style={{fontSize:30}}>숫자</Text>
+        <Text style={{fontSize:30}}>{this.props.number}</Text>
 
-        <View style={{width:50, height: 50}}></View>
+        <View style={{width:50, height: 50, backgroundColor: `rgb(${color[0]},${color[1]},${color[2]})` }}></View>
         <View style={css.subContainer}>
-          <TouchableHighlight style={{borderWidth:2,height:30}}>
+          <TouchableHighlight style={{borderWidth:2,height:30}} onPress={this.props.handleIncrement}>
             <Text style={{fontSize:20}}>+</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={{borderWidth:2,height:30}}>
+          <TouchableHighlight style={{borderWidth:2,height:30}} onPress={this.props.handleDecrement}>
             <Text style={{fontSize:20}}>-</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={{borderWidth:2,height:30}}>
+          <TouchableHighlight style={{borderWidth:2,height:30}} onPress={this.setRandomColor}>
             <Text style={{fontSize:20}}>color change</Text>
           </TouchableHighlight>
         </View>
+
+        <Text style={{fontSize:30}}>{this.props.mainNumber}</Text>
+        <View style={css.subContainer}>
+          <TouchableHighlight style={{borderWidth:2,height:30}} onPress={this.props.handleMainIncrement}>
+            <Text style={{fontSize:20}}>+</Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={{borderWidth:2,height:30}} onPress={this.props.handleMainDecrement}>
+            <Text style={{fontSize:20}}>-</Text>
+          </TouchableHighlight>
+        </View>
+
       </View>
     );
   }
@@ -49,7 +61,8 @@ class UpAndDown extends Component {
 const mapStateToProps = (state) => {
   return {
     number: state.counter.number,
-    color: state.ui.color
+    color: state.ui.color,
+    mainNumber: state.counter.mainNumber
   }
 }
 
@@ -57,7 +70,9 @@ const mapDispatchProps = (dispatch) => {
   return {
     handleIncrement: () => { dispatch(action.increment())},
     handleDecrement: () => { dispatch(action.decrement())},
-    handleSetColor: (color) => { dispatch(action.setColor(color))}
+    handleSetColor: (color) => { dispatch(action.setColor(color))},
+    handleMainIncrement: () => { dispatch(action.mainIncrement())},
+    handleMainDecrement: () => { dispatch(action.mainDecrement())},
   }
 }
 
